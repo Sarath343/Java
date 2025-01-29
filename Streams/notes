@@ -1,0 +1,19 @@
+Stream into:
+	Its a functional process approach to process collections(List , Set , Map etc)
+	Good when dealing with large data set
+	Lazy evaluation:
+		The operation will be executed only when a terminal operation is applied
+	parallel processing:
+		Can be easily parallelized with parallelStream()
+		
+		
+intermediate/Lazy operations(Transform Data)| It will return a stream itself
+	map(x->x*2)
+	filter(x->x>10)
+	sorted()
+	distinct()
+	limit(n)
+	skip(n)
+	
+	
+	
