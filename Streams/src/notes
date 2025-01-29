@@ -15,5 +15,13 @@ intermediate/Lazy operations(Transform Data)| It will return a stream itself
 	limit(n)
 	skip(n)
 	
+Terminal operations:
+	collect()
+	count()
+	findFirst()
+	findAny()
+	anyMatch(condition)
+	allMatch(condition)
+	noneMatch(condition)
 	
 	
