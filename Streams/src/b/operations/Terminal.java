@@ -16,9 +16,9 @@ public class Terminal {
 	public static void main(String[] args) {
 		List<Integer> lst = List.of(1, 2, 3, 4, 4, 5, 6, 7, 8, 7, 8, 9, 2);
 
-		// collectAndCount(lst);
+		 collectAndCount(lst);
 		// doFind(lst);
-		findingMatches(lst);
+		//findingMatches(lst);
 
 	}
 
@@ -42,7 +42,9 @@ public class Terminal {
 		// collected.forEach(System.out::println);
 		Set<Integer> sortedCollected = lst.stream().sorted().collect(Collectors.toSet());
 		sortedCollected.forEach(System.out::println);
-
+		
+		long count = lst.stream().count();
+		System.out.println("count "+count);
 	}
 
 }

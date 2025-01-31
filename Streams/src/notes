@@ -24,4 +24,17 @@ Terminal operations:
 	allMatch(condition)
 	noneMatch(condition)
 	
-	
+
+To find the difference between 2 localDateTime:
+	time1.until(time2,ChronoUnit.MILLIS) or another unit of time 
+
+For smaller data sets use for loops
+for larger one use stream
+again larger in millions and thousands data sets use parallelStream
+
+
+sorted(Comparator.comparing(Employee::getSalary).reversed())
+
+?
+	examples using Collectors.tomap(...)
+	and using stream on Map
