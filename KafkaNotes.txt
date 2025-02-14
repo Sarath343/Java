@@ -1,0 +1,104 @@
+Kafka
+Distributed commit log
+Applicatin writes messages , 
+
+kafka services , kafka connect 
+message can be accessed whenever they created
+
+
+WHy kafka:
+	multiple producers can write message in the topic
+	multiple consumers can access message from the topic
+	even if one consumer consume a message , it will be persisted and another consumer also can access
+
+
+COnsumer group : only one cinsumer frm the group will access a message 
+
+Topics can have partitions 
+
+Disc based persistence 
+	on system down , data will be stored on disc , then system recovers data can be accessd from disc 
+	
+Scalability : mutiple brokers and clusters can be used to scale 
+
+ 
+Components of kafka architecture:
+	
+	brokers ->make clusters 
+	zoo keeper
+	producer 
+	consumer 
+	
+messages are exchanged from producer and consumer through brokers  
+
+One topic can have multiple partitions.
+A partition can be either leader or follower 
+broker means cobination of partitions 
+partition can be replicated 
+replication factor 1 means no replication , a partition will be part of one broker only
+rep factror 2  means a copy of th epartition can be available in another broker as well
+
+
+
+Consumer group:
+set of consumer which try to access the topic from partitions 
+consumer group confirms that one partition is consumer by one consumer of the consumer group 
+
+partition to consumer 1:1 connection 
+	scalability: if load increases we can increaw the consumer in the consumer group 
+	if one consumer fail, remaining consumer can adjust to take the left over partition 
+	 
+
+Kafka Producer:
+	kafka doesnt send messages one by one 
+	batch : a set of messages that has to go to same topic and same partition 
+
+record:message sent to topic	
+	it will have 
+		partition |if partition is not there , hashvalue of the key gives partition 
+		topic
+		key 
+		value 
+		
+using cmd we can create topic 
+see all the available topics
+delete topic 
+connect a consumer to topic 
+connect a producer to topic 
+can produce messages using producer console
+	which will be visible for the consumer who consumes the topic 
+	
+commands:
+	kafka-topics --list --bootstrap-server localhost:9092
+
+	kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic first-topic
+
+	kafka-topics --describe --bootstrap-server localhost:9092 --topic first-topic
+
+	kafka-console-consumer --bootstrap-server localhost:9092 --topic first-topic
+
+	kafka-console-producer --broker-list localhost:9092 --topic first-topic
+
+	kafka-topics --delete --bootstrap-server localhost:9092 --topic first-topic                           
+
+	Note:
+
+	For delete add the following in kafka server.properties
+
+	delete.topic.enable=true
+	
+kafka provides :
+	Admin API:
+		To maage brokers , topic and other objects 
+	Producer APi:
+		publish stream of messages to topics 
+	Consumer Api:
+		to subscribe and read the stream of messages from kafka brokers 
+	Stream API:
+		Allow to process streams and apply transaformations 
+		like read form one topic and write to another topic 
+	Connect APi:
+		reusable import and export connectors to communicate with another system 
+		to take data from data source etc 
+		
+		
