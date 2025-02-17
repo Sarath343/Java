@@ -1,6 +1,6 @@
 Kafka
 Distributed commit log
-Applicatin writes messages , 
+Application writes messages , 
 
 kafka services , kafka connect 
 message can be accessed whenever they created
@@ -12,12 +12,12 @@ WHy kafka:
 	even if one consumer consume a message , it will be persisted and another consumer also can access
 
 
-COnsumer group : only one cinsumer frm the group will access a message 
+Consumer group : only one consumer frm the group will access a message 
 
 Topics can have partitions 
 
 Disc based persistence 
-	on system down , data will be stored on disc , then system recovers data can be accessd from disc 
+	on system down , data will be stored on disc , when system recovers data can be accessd from disc 
 	
 Scalability : mutiple brokers and clusters can be used to scale 
 
@@ -36,7 +36,7 @@ A partition can be either leader or follower
 broker means cobination of partitions 
 partition can be replicated 
 replication factor 1 means no replication , a partition will be part of one broker only
-rep factror 2  means a copy of th epartition can be available in another broker as well
+rep factror 2  means a copy of the partition can be available in another broker as well
 
 
 
@@ -45,7 +45,7 @@ set of consumer which try to access the topic from partitions
 consumer group confirms that one partition is consumer by one consumer of the consumer group 
 
 partition to consumer 1:1 connection 
-	scalability: if load increases we can increaw the consumer in the consumer group 
+	scalability: if load increases we can increase the consumer in the consumer group 
 	if one consumer fail, remaining consumer can adjust to take the left over partition 
 	 
 
@@ -60,13 +60,14 @@ record:message sent to topic
 		key 
 		value 
 		
-using cmd we can create topic 
-see all the available topics
-delete topic 
-connect a consumer to topic 
-connect a producer to topic 
-can produce messages using producer console
-	which will be visible for the consumer who consumes the topic 
+using cmd
+	we can create topic 
+	see all the available topics
+	delete topic 
+	connect a consumer to topic 
+	connect a producer to topic 
+	can produce messages using producer console
+		which will be visible for the consumer who consumes the topic 
 	
 commands:
 	kafka-topics --list --bootstrap-server localhost:9092
@@ -89,7 +90,7 @@ commands:
 	
 kafka provides :
 	Admin API:
-		To maage brokers , topic and other objects 
+		To manage brokers , topic and other objects 
 	Producer APi:
 		publish stream of messages to topics 
 	Consumer Api:
@@ -102,3 +103,17 @@ kafka provides :
 		to take data from data source etc 
 		
 		
+-------------------------
+Kafka producer
+many steps happen in producer:
+	creation of producer record | send() method 
+	serializer -> to serialize the message object 
+	partitioner -> classifies the messages based on the partitions and topics 
+		creation of the bactches based on the the partition numbers 	
+	sending the batch to brokers 
+		on success send the metadata back 
+		on failure retry 
+			consistent failure will give exception 
+	
+
+	
